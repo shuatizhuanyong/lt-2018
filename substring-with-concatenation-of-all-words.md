@@ -1,7 +1,7 @@
 # notice:
 1. total, map, start these 3 vars need to maintain together in
   1.1 in side of 1st loop:
-```
+```java
             Map<String, Integer> map = new HashMap<>(template);
             total = 0;
             int j = i, start = i;
