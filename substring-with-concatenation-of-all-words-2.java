@@ -34,7 +34,6 @@ class Solution {
             int j = i, start = i;
             while (j <= s.length() - wlen) {
                 String sb = s.substring(j, j + wlen);
-
                 if (!template.containsKey(sb)) {
                     map = new HashMap<>();
                     j += wlen;
@@ -66,7 +65,8 @@ class Solution {
         
     }
     public static void main(String args[]) {
-        Solution so = new Solution();
+        //Solution so = new Solution();
+        Solution2 so = new Solution2();
         
         List<Integer> res = so.findSubstring("barfoothefoobaraaa", new String[]{"foo","bar"});
         System.out.println(res);
@@ -80,3 +80,48 @@ class Solution {
         System.out.println(res);
     }
 }
+class Solution2 {
+    public List<Integer> findSubstring(String s, String[] words) {
+        List<Integer> res = new ArrayList<>();
+        if (words.length == 0 || s.length() < 1) {
+            return res;
+        }
+        int step = words[0].length();
+        Map<String, Integer> template = new HashMap<>();
+        for (String w: words) {
+            template.put(w, template.getOrDefault(w, 0) + 1); 
+        }
+        
+        //n : len(s), m: len(words), k : len(words[0])
+        // time complexity: O(k * m + s) == O(s)
+        for (int i = 0 ; i < step ; i++) {
+            int start = i, end = i, total = words.length;
+            Map<String, Integer> map = new HashMap<>(template);
+            while (end + step <= s.length()){
+                String sb = s.substring(end, end + step);
+                end += step;
+                //Integer cnt = map.get(sb);
+                if (map.containsKey(sb)) {
+                    if (map.get(sb) > 0) total--;
+                    map.put(sb, map.get(sb) - 1);
+                }
+                if (total == 0) {
+                    res.add(start);
+                }
+                if (end - start == words.length * step) {
+                    sb = s.substring(start, start + step);
+                    start += step;
+                    if (map.containsKey(sb)) {
+                        if (map.get(sb) >= 0 && map.get(sb) < template.get(sb))  total++;
+                        map.put(sb, map.get(sb) + 1);
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+}
+
+
+
