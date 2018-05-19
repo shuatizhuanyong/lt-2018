@@ -15,7 +15,10 @@ char s = 100;
 System.out.println(s);
 //d
 
-
+char x = 'a';
+int[] arr = new int[256];
+arr[x] =121;
+//Correct
 ```
 
 
@@ -38,4 +41,13 @@ for (int i: intarray) {
     list.add(i);
 }
 
+```
+
+### char & Character
+```java
+char s = 100;
+System.out.println("equals: " + (new Character('d')).equals(s)); 
+// true
+System.out.println("==: " + (new Character('d') == s));
+// true
 ```
