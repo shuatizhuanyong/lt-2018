@@ -26,7 +26,7 @@ class Solution {
         return sb.toString();
     }
     public static void main (String args[]) {
-        Solution so = new Solution();
+        Solution2 so = new Solution2();
         String res = null;
         res = so.getHint("1807", "7810");
         System.out.println(res);
@@ -34,3 +34,31 @@ class Solution {
     }
 }
 
+
+class Solution2 {
+    public String getHint(String secret, String guess) {
+        //int[] posMap = new int[secret.length()];
+        int[] valueMap = new int[10];
+        int bulls = 0, cows = 0;
+        char[] arr1 = secret.toCharArray();
+        char[] arr2 = guess.toCharArray();
+        for (int i = 0 ; i < arr1.length ; i++) {
+            if (arr1[i] == arr2[i]) {
+                bulls++;
+            }else {
+                char ch1 = arr1[i];
+                char ch2 = arr2[i];
+                if (valueMap[ch1 - '0']++ < 0) {
+                    cows++;
+                } 
+                if (valueMap[ch2 - '0']-- > 0) {
+                    cows++;
+                }
+
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(bulls).append('A').append(cows).append('B');
+        return sb.toString();
+    }
+}
