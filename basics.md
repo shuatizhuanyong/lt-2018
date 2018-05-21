@@ -70,7 +70,7 @@ List<Integer>[] listarr = new List<Integer>[10];
 * sublist
 ```java
 List<Integer> list = Arrays.asList(1,2,3,4,5);
-list.subList(1, 3); //fromIndex, toIndex 
+list.subList(0, 3); //fromIndex, toIndex 
 ```
 
 ### Map/TreeMap
@@ -83,12 +83,12 @@ List<Integer> list = entry.getValue();
 
 
 | Collections   | Get   | ContainsKey  | Next  | Data Structure  |
-| ------------- |:-----:| -----:|-----:|-----:|
-|HashMap        | O(1)  | O(1)  | O(h / n)    | Hash Table|
-|LinkedHashMap| O(1)| O(1)| O(1)               | Hash Table + Linked List|
-|IdentityHashMap| O(1)| O(1)| O(h / n)| Array|
-|WeakHashMap| O(1)| O(1)| O(h / n)| Hash Table|
-|EnumMap| O(1)| O(1)| O(1)| Array|
-|TreeMap| O(log n)| O(log n)| O(log n)| Red-black tree|
+| ------------- |:-----:| ------------:|-----:|-----:|
+|HashMap        | O(1)  | O(1)         | O(h / n)    | Hash Table|
+|LinkedHashMap  | O(1)| O(1)| O(1)               | Hash Table + Linked List|
+|TreeMap        | O(log n)| O(log n)| O(log n)| Red-black tree|
 |ConcurrentHashMap| O(1)| O(1)| O(h / n)| Hash Tables|
 |ConcurrentSkipListMap| O(log n)| O(log n)| O(1)| Skip List|
+|IdentityHashMap| O(1)| O(1)| O(h / n)| Array|
+|WeakHashMap    | O(1)| O(1)| O(h / n)| Hash Table|
+|EnumMap| O(1)| O(1)| O(1)| Array|
