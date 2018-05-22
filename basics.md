@@ -92,3 +92,17 @@ List<Integer> list = entry.getValue();
 |IdentityHashMap| O(1)| O(1)| O(h / n)| Array|
 |WeakHashMap    | O(1)| O(1)| O(h / n)| Hash Table|
 |EnumMap| O(1)| O(1)| O(1)| Array|
+
+
+
+
+### int <===> long
+* int to long, auto convert
+
+```java
+int a = 34;
+void test(long param) {
+  System.out.println(param);
+}
+test(a);
+```
