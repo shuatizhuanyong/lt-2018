@@ -91,4 +91,4 @@ List<Integer> list = entry.getValue();
 |ConcurrentSkipListMap| O(log n)| O(log n)| O(1)| Skip List|
 |IdentityHashMap| O(1)| O(1)| O(h / n)| Array|
 |WeakHashMap    | O(1)| O(1)| O(h / n)| Hash Table|
-|EnumMap| O(1)| O(1)| O(1)| Array|
+|EnumMap| O(1)  | O(1)| O(1)| Array|
