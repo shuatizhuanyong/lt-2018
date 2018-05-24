@@ -106,3 +106,38 @@ void test(long param) {
 }
 test(a);
 ```
+
+
+### char space 
+* An ASCII character in 8-bit ASCII encoding is 8 bits (1 byte), though it can fit in 7 bits.
+ 
+* An ISO-8895-1 character in ISO-8859-1 encoding is 8 bits (1 byte).
+ 
+* A Unicode character in UTF-8 encoding is between 8 bits (1 byte) and 32 bits (4 bytes).
+ 
+* A Unicode character in UTF-16 encoding is between 16 (2 bytes) and 32 bits (4 bytes), though most of the common characters take 16 bits. This is the encoding used by Windows internally.
+ 
+* A Unicode character in UTF-32 encoding is always 32 bits (4 bytes).
+ 
+* An ASCII character in UTF-8 is 8 bits (1 byte), and in UTF-16 - 16 bits.
+ 
+* The additional (non-ASCII) characters in ISO-8895-1 (0xA0-0xFF) would take 16 bits in UTF-8 and UTF-16.
+
+
+### integer space 
+* ref: https://stackoverflow.com/questions/29251563/use-of-wrapper-class-increases-size-of-object
+```
+The instances of these classes will typically be the same size. On most JVMs, it uses 32-bit references so your wrapper with two 32-bit values (int or references) will be the same, about 24 bytes in total on a 64-bit JVM.
+
+In a 64-bit JVM, the default header size is 12 bytes, the references will be 32-bit with Compressed Oops, and an 8 byte alignment will be a total size of 24 bytes.
+
+Header - 12 bytes with 64-bit class references
+int or ref - 4 bytes
+int or ref - 4 bytes
+align to multiple of 8 - +4 bytes
+==========
+Total - 24 bytes
+If the references are 64-bit (e.g. > 64 GB heaps) it will use 8 bytes per reference and the total size will be 32 bytes. However, if the alignment is 16 as well (for heaps between 32 - 64 GB) then the pair of int wrapper will also be 32 bytes.
+
+If you are concerned about total space consumed, and the Integer is not cached i.e. is a new Integer, the total space can be a further 16 bytes per Integer. If the Integer is cached, it doesn't use any more space.
+```
