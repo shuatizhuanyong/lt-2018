@@ -13,6 +13,7 @@ public class Helper {
             System.out.println(node.toString());
     }
 }
+
 class TreeNode {
     int val;
     TreeNode left;
@@ -41,4 +42,10 @@ class TreeNode {
         sb.append("||");
         return sb.toString();
     }
+}
+
+class TreeLinkNode {
+    int val;
+    TreeLinkNode left, right, next;
+    TreeLinkNode(int x) { val = x; }
 }
