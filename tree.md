@@ -46,6 +46,31 @@ public List<Integer> preorderTraversal(TreeNode root) {
 ```
 * in order iteratively
 ```java
+
+// standard template
+public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> list = new ArrayList<>();
+    if (root == null) return list;
+    Stack<TreeNode> stk = new Stack<>();
+
+    while (root != null) {
+        stk.push(root);
+        root = root.left;
+    }
+    while (!stk.isEmpty()) {
+        TreeNode node = stk.pop();
+        list.add(node.val);
+        if (node.right != null) {
+            TreeNode rl = node.right;
+            while (rl != null) {
+                stk.push(rl);
+                rl = rl.left;
+            }
+        }
+    }
+    return list;
+}
+//Template - 1
 public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> list = new ArrayList<>();
     if(root == null) return list;
@@ -61,7 +86,7 @@ public List<Integer> inorderTraversal(TreeNode root) {
     }
     return list;
 }
-// Anther Template
+// Another Template
 public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> result = new ArrayList<>();
     Deque<TreeNode> stack = new ArrayDeque<>();
