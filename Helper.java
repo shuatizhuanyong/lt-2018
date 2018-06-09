@@ -20,27 +20,50 @@ class TreeNode {
     TreeNode right;
     TreeNode(int x) { val = x; }
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        //Codec cc = new Codec();
+        //Strincc.serialize(this);
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(this);
         int level = 0;
+        List<String> res = new ArrayList<>();
         while (!q.isEmpty()) {
-            sb.append("`" + level + "`:[");
+            StringBuilder sb = new StringBuilder();
+            //sb.append("'" + level + "':[");
             int size = q.size();
             while (size > 0) {
                 TreeNode node = q.poll();
-                sb.append(node.val);
-                if (size != 1) sb.append(", ");
-                if (node.left != null) q.offer(node.left);
-                if (node.right != null) q.offer(node.right);
+                if (node == null) {
+                    sb.append("#");
+                    if (size != 1) sb.append(", ");
+                } else {
+                    sb.append(node.val + "");
+                    if (size != 1) sb.append(", ");
+                    q.offer(node.left);
+                    q.offer(node.right);
+                }
+               // if (node.left != null) q.offer(node.left);
+               // if (node.right != null) q.offer(node.right);
                 size--;
             }
-            sb.append(']').append(" ");
-
+           // sb.append(']').append(" ");
             level++;
+            res.add(sb.toString());
         }
-        sb.append("||");
-        return sb.toString();
+        StringBuilder sbres = new StringBuilder();
+        for (String l : res) {
+            sbres.append(l).append("\n");
+        }
+        return sbres.toString();
+        //sb.append("||");
+        //return sb.toString();
+    }
+    public static void main (String args[] ) {
+        TreeNode root = new TreeNode(0);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(2);
+        root.left.right = new TreeNode(3);
+        root.right.right = new TreeNode(4);
+        System.out.println(root);
     }
 }
 
