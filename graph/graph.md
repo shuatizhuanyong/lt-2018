@@ -52,3 +52,26 @@ Exmple [link] (https://ka-perseus-images.s3.amazonaws.com/cc82379521bd84738e86d6
 
 * refer: https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs
 
+# check cycle
+
+* BFS in adj list:
+```java
+int[] degree // for number of each indegree 
+queue.add(node which indegree[node] == 0)
+//bfs scan the graph
+while (!q.isEmpty()) {
+    node = q.poll();
+    nxtList = adjs[node]
+    while (nxt: nxtList) {
+      degree[nxt]--
+      if (degree[nxt] == 0) {
+          q.offer(nxt);
+      }
+    }
+}
+
+if the number of scaned node < the amount of node:
+  hasCycle = true
+```
+
+* DFS in adj list:
