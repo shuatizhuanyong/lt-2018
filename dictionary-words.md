@@ -13,3 +13,4 @@ proof by contradiction -- 反证法
 prerequisites [link](https://translate.google.com/#en/zh-CN/prerequisites)
 
 loose coupling --松耦合
+preserve --保留
