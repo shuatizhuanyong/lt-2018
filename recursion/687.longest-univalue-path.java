@@ -9,9 +9,6 @@ class Solution {
         if (node == null) {
             return;
         }
-        //if (node.left == null && node.right == null) {
-        //    sideLongest[0] = 1;
-        //}
         int[] leftLongest = new int[]{0};
         int[] rightLongest = new int[]{0};
         if (node.left != null) {
@@ -28,14 +25,41 @@ class Solution {
             }
         }
 
-
         sideLongest[0] = 1 + Math.max(leftLongest[0], rightLongest[0]);
         longest = Math.max(longest, leftLongest[0] + rightLongest[0] + 1);
     }
     public static void main(String args[] ) {
-        Solution so = new Solution();
+        Solution0 so = new Solution0();
         int res;
         res = so.longestUnivaluePath(new TreeNode(0));
         System.out.println(res);
     }
+}
+
+class Solution0 {
+
+    int lg = 0;
+    public int longestUnivaluePath(TreeNode root) {
+        if(root == null) return 0;
+        sideLongest(root);
+        return lg - 1;
+    }
+    int sideLongest(TreeNode node) {
+        if (node == null) return 0;
+        int leftLst = sideLongest(node.left);
+        int rightLst = sideLongest(node.right);
+        int localLongest = 1, sideLst = 0;
+        
+        if (node.left != null && node.left.val == node.val) {
+            localLongest += leftLst;
+            sideLst = leftLst;
+        }
+        if (node.right != null && node.right.val == node.val) {
+            localLongest += rightLst;
+            sideLst = Math.max(sideLst, rightLst);
+        }
+        lg = Math.max(lg, localLongest);
+        return sideLst + 1;
+    }
+
 }
