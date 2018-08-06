@@ -1,3 +1,4 @@
+//[tags] trie
 class Solution {
     TrieNode root = new TrieNode();
     public List<String> findWords(char[][] board, String[] words) {
