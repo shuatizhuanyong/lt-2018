@@ -5,6 +5,7 @@ atomic [原子](https://translate.google.com/#en/zh-CN/atomic)
 sparse matrices  [link](https://translate.google.com/#en/zh-CN/sparse)
 
 primitive [link](https://translate.google.com/#en/zh-CN/primitive) 
+Two-dimensional array [link](https://translate.google.com/#en/zh-CN/dimensional) 
 
 exponent [link](https://translate.google.com/#en/zh-CN/exponent) 
 
