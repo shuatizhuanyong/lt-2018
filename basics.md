@@ -142,3 +142,9 @@ If the references are 64-bit (e.g. > 64 GB heaps) it will use 8 bytes per refere
 If you are concerned about total space consumed, and the Integer is not cached i.e. is a new Integer, the total space can be a further 16 bytes per Integer. If the Integer is cached, it doesn't use any more space.
 ```
 >>>>>>> 27d8c00d0af7a870b9cf64df6002c7aba10da4ed
+
+
+# JDK Arrays 
+```java
+Arrays.equals(array1, array2)
+```
