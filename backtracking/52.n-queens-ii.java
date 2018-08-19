@@ -5,6 +5,7 @@ class Solution {
 
     int count = 0;
     public int totalNQueens(int n) {
+        if (n == 1)  return 1;
         if (n < 4) return 0;
         int[] qs = new int[n];
         Arrays.fill(qs, -1);
