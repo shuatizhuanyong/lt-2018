@@ -148,3 +148,10 @@ If you are concerned about total space consumed, and the Integer is not cached i
 ```java
 Arrays.equals(array1, array2)
 ```
+
+
+# StringBuilder
+
+```java
+StringBuilder.insert(0, ''); //slow
+```
