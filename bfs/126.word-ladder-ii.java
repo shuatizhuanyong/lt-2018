@@ -5,12 +5,12 @@ class Solution {
         if (!words.contains(endWord)) return new ArrayList<List<String>>();
         Queue<String> q = new LinkedList<>();
 
-        Map<String, Set<String>> levels = new HashMap<>();
-        levels.put(beginWord, new HashSet<String>());
+        Map<String, Set<String>> graph = new HashMap<>();
+        Map<String, Integer> distances = new HashMap<>();
+        distances.put(beginWord, 1);
         q.offer(beginWord);
-        words.remove(beginWord);
+        words.add(beginWord);
         boolean isFound = false;
-        int step = 0;
         while (!q.isEmpty()) {
             if (isFound) break;
             int size = q.size();
@@ -28,9 +28,9 @@ class Solution {
                             if (temp.equals(endWord)) {
                                 isFound = true;
                             } else {
-                //                words.remove(temp);
+                                //                words.remove(temp);
+                                levels.get(cur).add(temp);
                             }
-                            levels.get(cur).add(temp);
                             q.offer(temp);
                             if (!levels.containsKey(temp)) {
                                 levels.put(temp, new HashSet<String>());
@@ -45,7 +45,7 @@ class Solution {
         List<List<String>> res = new ArrayList<>();       
         if (!isFound) return res;
         System.out.println(levels);
-       // System.out.println(isFound);
+        // System.out.println(isFound);
 
         List<String> path = new ArrayList<String>();
         path.add(beginWord);
@@ -53,7 +53,7 @@ class Solution {
         return res;
     }
 
-    void dfs(Map<String, Set<String>> map, String cur, String end, List<String> path, List<List<String>> res, int leftStep) {
+    void dfs(Map<String, Set<String>> map, String cur, String end, List<String> path, List<List<String>> res, Map<String, Integer> steps) {
         if (cur.equals(end)) {
             List<String> p = new ArrayList<String>(path);
             res.add(p);
@@ -62,9 +62,9 @@ class Solution {
         if (leftStep == 0) return;
         Set<String> nxts = map.get(cur);
         for (String w: nxts) {
-                path.add(w);
-                dfs(map, w, end, path, res, leftStep - 1);
-                path.remove(path.size() - 1);
+            path.add(w);
+            dfs(map, w, end, path, res, leftStep - 1);
+            path.remove(path.size() - 1);
 
         }
     }
@@ -72,7 +72,7 @@ class Solution {
         Solution so = new Solution();
         List<List<String>> res = null;
         res = so.findLadders("hit", "cog", Arrays.asList("hot","dot","dog","lot","log","cog"));
-       System.out.println(res);
+        System.out.println(res);
         res = so.findLadders("hot", "dog", Arrays.asList("hot","dot","dog"));
         System.out.println(res);
         res = so.findLadders("red", "tax", Arrays.asList("ted","tex","red","tax","tad","den","rex","pee"));
@@ -80,6 +80,6 @@ class Solution {
 
     }
 
-    
+
 
 }
