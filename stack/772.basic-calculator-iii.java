@@ -55,3 +55,52 @@ class Solution {
         System.out.println(res);
     }
 }
+class Solution0 {
+
+    public int calculate(String s) {
+        if (s == null || s.length() == 0) return 0;
+        s = s.replaceAll(" ", "");
+        //s = s + " ";
+        char[] chs = s.toCharArray();
+        char sign = '+';
+        int i = 0;
+        int num = 0;
+        Stack<Integer> st = new Stack<>();
+        while (i < chs.length) {
+            if (Character.isDigit(chs[i])) {
+                while (i < chs.length && Character.isDigit(chs[i])) {
+                    num = num * 10 + (chs[i] - 0);
+                    i++;
+                }
+            } else if (chs[i] == '(') {
+                int j = i;
+                int cnt = 0;
+                for (; j < chs.length ; j++) {
+                    if (chs[j] == '(') cnt++;
+                    if (chs[j] == ')') cnt--;
+                    if (cnt == 0) break;
+                }
+                num = calculate(s.substring(i + 1, j));
+                i = j;
+            }
+            if (Arrays.asList('+', '-', '*', '/').contains(chs[i]) || i == chs.length - 1) {
+                if (sign == '+') {
+                    st.push(num);
+                } else if (sign == '-') {
+                    st.push(0 - num);
+                } else if (sign == '/') {
+                    st.push(st.pop() / num);
+                } else if (sign == '*') {
+                    st.push(st.pop() * num);
+                }
+                sign = chs[i];
+            } 
+        }
+        int res = 0;
+        while (!st.isEmpty()) {
+            res += st.pop();
+        }
+        return res;
+    }
+}
+
